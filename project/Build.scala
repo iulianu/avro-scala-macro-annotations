@@ -73,8 +73,7 @@ object MyBuild extends Build {
     settings = buildSettings ++ Seq(
       libraryDependencies <+= (scalaVersion)("org.scala-lang" % "scala-reflect" % _),
       libraryDependencies += "org.codehaus.jackson" % "jackson-core-asl" % "1.9.13",
-      libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.1.0",
-      libraryDependencies += "com.typesafe.scala-logging" % "scala-logging-slf4j_2.11" % "2.1.2")
+      libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.1.0")
   )
 
   lazy val tests: Project = Project(
