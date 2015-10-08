@@ -36,12 +36,13 @@ object AvroTypeProviderMacro extends LazyLogging {
           }
 
           // helpful for IDE users who may not be able to easily see where their files live
-          logger.info(s"Current path: ${new File(".").getAbsolutePath}")
+//          logger.info(s"Current path: ${new File(".").getAbsolutePath}")
 
           // get the schema for the record that this class represents
           val avroFilePath = FilePathProbe.getPath(c)
           val infile = new File(avroFilePath)
-          val fileSchema = FileParser.getSchema(infile)
+          val instream = this.getClass.getResourceAsStream(avroFilePath)
+          val fileSchema = FileParser.getSchema(infile, instream)
           val nestedSchemas = NestedSchemaExtractor.getNestedSchemas(fileSchema)
           // first try matching schema record full name to class full name, then by the
           // regular name in case we're trying to read from a non-namespaced schema
